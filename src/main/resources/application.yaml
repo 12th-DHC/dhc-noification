@@ -1,0 +1,48 @@
+spring:
+  config:
+    import: optional:file:.env[.properties]
+  application:
+    name: dhc.notification
+  mail:
+    host: ${SMTP_HOST}
+    port: ${SMTP_PORT}
+    username: ${SMTP_USERNAME}
+    password: ${SMTP_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  rabbitmq:
+    host: ${RABBITMQ_HOST}
+    port: ${RABBITMQ_PORT}
+    username: ${RABBITMQ_USERNAME}
+    password: ${RABBITMQ_PASSWORD}
+    listener:
+      simple:
+        concurrency: 5
+        max-concurrency: 5
+
+        retry:
+          enabled: true
+          initial-interval: 3000
+          max-attempts: 3
+          multiplier: 1.0
+          max-interval: 10000
+
+        default-requeue-rejected: false
+
+rabbitmq:
+  email:
+    queue: email
+    dlx: email.dlx
+    dlq: email.dlq
+
+logging:
+  level:
+    org.springframework.retry: DEBUG
+    org.springframework.amqp.rabbit.retry: DEBUG
+
+server:
+  port: 8081
