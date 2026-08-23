@@ -41,8 +41,8 @@ rabbitmq:
 
 logging:
   level:
-    org.springframework.retry: DEBUG
-    org.springframework.amqp.rabbit.retry: DEBUG
+    org.springframework.retry: INFO
+    org.springframework.amqp.rabbit.retry: INFO
 
 server:
   port: 8081
