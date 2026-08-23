@@ -21,7 +21,7 @@ public class EmailSenderService {
 
     private final JavaMailSender emailSender;
     private final SpringTemplateEngine templateEngine;
-    private static final Logger log = LoggerFactory.getLogger(Consumer.class);
+    private static final Logger log = LoggerFactory.getLogger(EmailSenderService.class);
 
     @Value("${spring.mail.username}")
     private String senderEmail;
